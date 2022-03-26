@@ -10,14 +10,16 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 const CONNECTION_URL =
-  "mongodb+srv://iDuque:@kiraLeo2912@cluster1.qjai6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://user_admin:@kiraLeo2912@cluster1.qjai6.mongodb.net/memoriesDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>
-    app.listen(PORT, console.log(`The server is running on port: ${PORT}`))
+    app.listen(PORT, () =>
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    )
   )
-  .catch((error) => console.log(error.message));
+  .catch((error) => console.log(`${error} did not connect`));
 
 mongoose.set("useFindAndModify", false);
